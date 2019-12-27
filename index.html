@@ -1,20 +1,51 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-    <title>PSET-6</title>
+  <head>
+      <title>PSET-6</title>
 
-    <!-- stylesheets -->
-    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+      <link rel="stylesheet" type="text/css" href="css/styles.css" />
+      <script type="text/javascript" src="js/app.js"></script>
 
-    <!-- scripts -->
-    <script type="text/javascript" src="js/app.js"></script>
-
-</head>
-<body>
-    <header>
+  </head>
+  <body>
         <h1>To Do List</h1>
-    </header>
-    
-</body>
+
+      <div class="todo-list">
+          <div class="new-task">
+              <form action="">
+                  <input
+                    type="text"
+                    class="new list"
+                    placeholder="enter a new task"
+                  />
+                  <button class="button task"
+                  aria-label="create new task">+</button>
+              </form>
+          </div>
+          <div class="tasks">
+              <button class="priority"></button>
+              <label for="task-1">
+                  work on pset-6
+              </label>
+              <input
+              type="checkbox"
+              id="task-1"
+              />
+              <button class="trashbin"></button>
+          </div>
+          <div class="tasks">
+              <button class="priority"></button>
+              <label for="task-2">
+                  english research project
+              </label>
+              <input
+              type="checkbox"
+              id="task-2"
+              />
+              <button class="trashbin"></button>
+          </div>
+      </div>
+
+  </body>
 </html>
