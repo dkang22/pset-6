@@ -5,47 +5,32 @@
       <title>PSET-6</title>
 
       <link rel="stylesheet" type="text/css" href="css/styles.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <script type="text/javascript" src="js/app.js"></script>
 
   </head>
   <body>
-        <h1>To Do List</h1>
 
-      <div class="todo-list">
-          <div class="new-task">
-              <form action="">
-                  <input
-                    type="text"
-                    class="new list"
-                    placeholder="enter a new task"
-                  />
-                  <button class="button task"
-                  aria-label="create new task">+</button>
-              </form>
+      <div class="container">
+          <div class="header">
+              <p>To Do App</p>
           </div>
-          <div class="tasks">
-              <button class="priority"></button>
-              <label for="task-1">
-                  work on pset-6
-              </label>
-              <input
-              type="checkbox"
-              id="task-1"
-              />
-              <button class="trashbin"></button>
-          </div>
-          <div class="tasks">
-              <button class="priority"></button>
-              <label for="task-2">
-                  english research project
-              </label>
-              <input
-              type="checkbox"
-              id="task-2"
-              />
-              <button class="trashbin"></button>
+          <div class="content">
+              <div class="new-task">
+                  <button class="fa fa-plus-circle"></i>
+                  <input type="text" id="input" placeholder="Add a task to-do">
+              </div>
+              <div id="tasks-list">
+                  <li class="item">
+                      <i class="fa fa-exclamation-circle"></i>
+                      <p class="text">Complete p-set6</p>
+                      <i class="fa fa-circle-thin complete"></i>
+                      <i class="fa fa-trash-o delete"></i>
+                  </li>
+              </div>
           </div>
       </div>
+
 
   </body>
 </html>
