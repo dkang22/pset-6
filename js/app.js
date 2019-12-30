@@ -1,3 +1,4 @@
+
 const list = document.getElementById("tasks-list");
 const input = document.getElementById("input");
 const PRIORITY_BUTTON = "fa fa-exclamation-circle";
@@ -5,6 +6,22 @@ const CHECKMARK_BUTTON = "fa fa-check complete";
 const DELETE_BUTTON = "fa fa-trash-o delete";
 const STRIKE_THROUGH = "lineThrough";
 
+function newTask(task) {
+    var item = `
+                      <li class="item">
+                        <span><button class="fa fa-exclamation-circle" id="0"></button></i>
+                        <p class="to-do-text"> ${task} </p>
+                        <span><button class="fa fa-check complete" id="0"></button></i>
+                        <span><button class="fa fa-trash-o delete" id="0"></button></i>
+                      </li>
+                  `;
+    list.insertAdjacentHTML("beforeend", item);
+
+}
+
+newTask("haha");
+
+//onclick="newTask()" href="javascript:void(0);"
 
 /* maybe this will work
 let list = [];
