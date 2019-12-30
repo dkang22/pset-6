@@ -6,19 +6,38 @@ header {
 
 body {
     background-color: #FFFFFF;
-    margin: 0;
+    margin: auto;
     font-family: "Work Sans", sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 1.5rem;
 }
 
-.button-task {
-    display: inline-block;
-    margin: auto;
-    height: 1em;
-    font: 1.1em "Century Gothic", "Century Gothic", "Apple Gothic", sans-serif;
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
 }
 
-.button-task:hover {
-    box-shadow: 0.3em 0.3em 0.3em #777777;
+ul > li {
+    display: inline-block;
+}
+
+.container {
+    padding: 30px;
+}
+
+.header {
+    color: #8EE3F9;
+    font-size: 40px;
+    text-align: center;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.content {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.new-task {
+    text-align: center;
 }

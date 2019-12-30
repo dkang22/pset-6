@@ -1,16 +1,43 @@
-window.onload = function() {
-    document.querySelector(".clear") = clear;
-    document.getElementById("date") = date;
-    document.getElementById("tasks-list") = list;
-    document.getElementById("input") = input;
-    document.getElementsByClassName("priority").onclick = prioritize;
-    document.getElementsByClassName("fa fa-plus-circle").onclick = addTask;
+const list = document.getElementById("tasks-list");
+const input = document.getElementById("input");
+const PRIORITY_BUTTON = "fa fa-exclamation-circle";
+const CHECKMARK_BUTTON = "fa fa-check complete";
+const DELETE_BUTTON = "fa fa-trash-o delete";
+const STRIKE_THROUGH = "lineThrough";
+
+
+/* maybe this will work
+let list = [];
+
+//CREATING A NEW TASK
+function newTask() {
+//text
+    var listElement = document.createElement("li");
+    var inputedTask = document.getElementById("input").value;
+    var text = document.createTextNode(inputedTask);
+    listElement.appendChild(text);
+    if (inputedTask === "") {
+        alert("Please enter a task!")
+    } else {
+        document.getElementById("tasks-list").appendChild(listElement);
+    }
+    document.getElementById("input").value = "";
+//priority button
+    var span = document.createElement("SPAN");
+    var priorityButton = document.createTextNode("fa fa-exclamation-circle");
+
+
 }
 
-let LIST = [];
-let id = 0;
-LIST = [{}, {}, -];
+/*
+<li class="item">
+  <i class="fa fa-exclamation-circle"></i>
+  <p class="to-do-text">Complete p-set6</p>
+  <i class="fa fa-check complete"></i>
+  <i class="fa fa-trash-o delete"></i>
+</li>
 
+/*
 const CHECK = "fa-check-circle";
 const UNCHECK = "fa-circle-thin";
 const LINE_THROUGH = "lineThrough";
@@ -136,4 +163,13 @@ let tasker = {
 <button class="deleted-task">Trash Bin</button>
 </div>
 
+*/
+
+/*
+                    <li class="item">
+                      <i class="fa fa-exclamation-circle"></i>
+                      <p class="to-do-text">Complete p-set6</p>
+                      <i class="fa fa-check complete"></i>
+                      <i class="fa fa-trash-o delete"></i>
+                    </li>
 */

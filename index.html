@@ -17,16 +17,18 @@
           </div>
           <div class="content">
               <div class="new-task">
-                  <button class="fa fa-plus-circle"></i>
                   <input type="text" id="input" placeholder="Add a task to-do">
-              </div>
-              <div id="tasks-list">
-                  <li class="item">
+                  <span onclick="newTask()" href="javascript:void(0);"><button class="fa fa-plus-circle"></button></span>
+              </div><br>
+              <div>
+                  <ul id="tasks-list">
+                    <li class="item">
                       <i class="fa fa-exclamation-circle"></i>
-                      <p class="text">Complete p-set6</p>
-                      <i class="fa fa-circle-thin complete"></i>
+                      <p class="to-do-text">Complete p-set6</p>
+                      <i class="fa fa-check complete"></i>
                       <i class="fa fa-trash-o delete"></i>
-                  </li>
+                    </li>
+                  </ul>
               </div>
           </div>
       </div>
