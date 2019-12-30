@@ -1,4 +1,26 @@
+/*
+document.getElementById('addItem').addEventListener('click', function() {
+    var value = document.getElementById('input').value;
+    if (value) {
+        newTask(value);
+    } else {
+        alert("Please enter a task to-do!");
+    }
+});
 
+function newTask(task) {
+    var newItem = document.createElement('li');
+    newItem.innerText = text;
+
+    var icons = document.createElement('div');
+    buttons.classList.add('buttons');
+
+    var delete = document.createElement('button');
+    remove.classList.add('remove');
+
+
+}
+*/
 const list = document.getElementById("tasks-list");
 const input = document.getElementById("input");
 const PRIORITY_BUTTON = "fa fa-exclamation-circle";
@@ -6,11 +28,11 @@ const CHECKMARK_BUTTON = "fa fa-check complete";
 const DELETE_BUTTON = "fa fa-trash-o delete";
 const STRIKE_THROUGH = "lineThrough";
 
-function newTask(task) {
+function newTask(input) {
     var item = `
                       <li class="item">
                         <span><button class="fa fa-exclamation-circle" id="0"></button></i>
-                        <p class="to-do-text"> ${task} </p>
+                        <span class="to-do-text"> ${input} </span>
                         <span><button class="fa fa-check complete" id="0"></button></i>
                         <span><button class="fa fa-trash-o delete" id="0"></button></i>
                       </li>
@@ -19,7 +41,6 @@ function newTask(task) {
 
 }
 
-newTask("haha");
 
 //onclick="newTask()" href="javascript:void(0);"
 
