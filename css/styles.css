@@ -12,14 +12,21 @@ body {
     font-size: 1.5rem;
 }
 
-ul li {
-    width: 60%;
+ul {
+
+}
+
+li {
+    width: 80%;
     list-style-type: none;
     display: flex;
     flex-direction: column;
     position: relative;
     transition: 0.3s;
     font-size: 17px;
+    border: 1px solid #000;
+    border-radius: 15px;
+    padding: 12px;
     -webkit-appearance: none;
     -moz-appeareance: none;
     -ms-appearance: none;
@@ -55,7 +62,7 @@ input {
 }
 
 .container {
-    padding: 30px;
+    padding: 20px;
 }
 
 .header {
@@ -68,4 +75,16 @@ input {
 .content {
     margin-left: 20px;
     margin-right: 20px;
+}
+
+#priority-button {
+    align: "left";
+}
+
+#complete-button {
+    align: "right";
+}
+
+#remove-button {
+    align: "right";
 }
