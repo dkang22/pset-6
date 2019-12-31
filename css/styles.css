@@ -78,13 +78,12 @@ input {
 }
 
 #priority-button {
-    align: "left";
 }
 
 #complete-button {
-    align: "right";
+      margin-left: 82%;
 }
 
 #remove-button {
-    align: "right";
+    margin-left: 92%
 }

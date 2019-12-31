@@ -1,6 +1,11 @@
 const list = document.getElementById("tasks-list");
 const input = document.getElementById("input");
 let taskArray = [];
+const CHECK = "fa-check-circle"
+const UNCHECK = "fa-circle-thin"
+const EXCLAMATION = "fa-exclamation-circle"
+const TRASHBIN = "fa-trash-o"
+const STRIKETHROUGH = "lineThrough";
 let id = 0;
 
 function newTask(task, index, priority, complete, remove) {
@@ -23,18 +28,21 @@ function newTask(task, index, priority, complete, remove) {
         id++;
         var item = `
                           <li class="item">
-                            <span><button class="fa fa-exclamation-circle priority" id="priority-button" job="prioritize"></button></i>
+                            <span><button class="fa fa-exclamation-circle priority" id="${index}" job="prioritize"></button></i>
                             <span class="to-do-text" id="task-text">  ${task}  </span>
-                            <span><button class="fa fa-check complete" id="complete-button" job="complete"></button></i>
-                            <span onclick="removeTask"><button class="fa fa-trash-o remove" id="remove-button" job="remove"></button></i>
+                            <span><button class="fa fa-check-circle" id="${index}" job="complete"></button></i>
+                            <span onclick="removeTask(element)"><button class="fa fa-trash-o remove" id="${index}" job="remove"></button></i>
                           </li>
                     `;
         list.insertAdjacentHTML("beforeend", item);
         input.value = "";
+
+        let c = taskArray.length -1;
+        console.log(taskArray[c]);
     }
 }
 
-document.addEventListener("keyup", function(parameter){
+document.addEventListener("keyup", function(event){
     if(event.keyCode == 13) {
         if(input.value) {
             newTask(input.value);
@@ -45,8 +53,8 @@ document.addEventListener("keyup", function(parameter){
 });
 
 list.addEventListener("click", function(event){
-    const element = event.target;
-    const elementJob = element.attributes.job.value;
+    var element = event.target;
+    var elementJob = element.attributes.job.value;
 
     if (elementJob == "prioritize"){
         prioritizeTask(element);
@@ -58,15 +66,20 @@ list.addEventListener("click", function(event){
 
     }
 });
-
+/*
+${document}.click(function(event) {
+    var element = $(event.target).text;
+});
+*/
 function prioritizeTask(element) {
     console.log("priority");
 }
 
 function completeTask(element) {
-console.log("complete");
+    console.log("complete");
 }
 
-function removeTask(item) {
+function removeTask(element) {
     console.log("delete");
+    list.remove(element);
 }
