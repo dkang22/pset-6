@@ -101,14 +101,20 @@ input {
 .fa-check-circle {
     color: #2FA82B;
     background-color: #D6F3D5;
+    position: absolute;
+    right: 60px;
 }
 
 .fa-circle-thin {
-  color: #2FA82B;
-  background-color: #D6F3D5;
+    color: #2FA82B;
+    background-color: #D6F3D5;
+    position: absolute;
+    right: 60px;
 }
 
 .fa-trash-o {
     color: #FF0000;
     background-color: #F8BBBB;
+    position: absolute;
+    right: 8px;
 }
