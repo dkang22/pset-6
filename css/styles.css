@@ -77,6 +77,11 @@ input {
     margin-right: 20px;
 }
 
+.completed {
+	text-decoration: line-through;
+	color: white;
+}
+
 #priority-button {
 }
 

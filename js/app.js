@@ -31,8 +31,8 @@ function newTask(task, index, priority, complete, remove) {
                           `<li class="item" id="${index}">
                             <span><button class="fa fa-exclamation-circle priority" id="${index}" job="prioritize"></button></i>
                             <span class="to-do-text" id="${index}">  ${task}  </span>
-                            <span><button class="fa fa-check-circle" id="${index}" job="complete"></button></i>
-                            <span><button class="fa fa-trash-o remove" id="${index}" job="remove"></button></i>
+                            <span"><button class="fa fa-check-circle" id="${index}" job="complete"></button></i>
+                            <span"><button class="fa fa-trash-o remove" id="${index}" job="remove"></button></i>
                           </li>
                         `;
         list.append(item);
@@ -72,12 +72,23 @@ function prioritizeTask(element) {
     console.log("priority");
 }
 
+
+/*
 function completeTask(element) {
     console.log("complete");
+    element.parentNode.querySelector(".")
+}
+*/
+function removeTask(element) {
+
+    console.log("delete");
+    element.parentNode.parentNode.removeChild(element.parentNode);
+
+    taskArray[element.id].trash = true;
 }
 
-function removeTask(element) {
-    document.getElementById('')
-    console.log("delete");
-    list.remove(element);
-}
+/*
+    var x = this.querySelector("li").id;
+        list.remove(list(x));
+
+*/
