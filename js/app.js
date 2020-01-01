@@ -26,15 +26,16 @@ function newTask(task, index, priority, complete, remove) {
             remove: false
         });
         id++;
-        var item = `
-                          <li class="item">
+        var item = document.createElement("li");
+        item.innerHTML =
+                          `<li class="item" id="${index}">
                             <span><button class="fa fa-exclamation-circle priority" id="${index}" job="prioritize"></button></i>
-                            <span class="to-do-text" id="task-text">  ${task}  </span>
+                            <span class="to-do-text" id="${index}">  ${task}  </span>
                             <span><button class="fa fa-check-circle" id="${index}" job="complete"></button></i>
-                            <span onclick="removeTask(element)"><button class="fa fa-trash-o remove" id="${index}" job="remove"></button></i>
+                            <span><button class="fa fa-trash-o remove" id="${index}" job="remove"></button></i>
                           </li>
-                    `;
-        list.insertAdjacentHTML("beforeend", item);
+                        `;
+        list.append(item);
         input.value = "";
 
         let c = taskArray.length -1;
@@ -66,11 +67,7 @@ list.addEventListener("click", function(event){
 
     }
 });
-/*
-${document}.click(function(event) {
-    var element = $(event.target).text;
-});
-*/
+
 function prioritizeTask(element) {
     console.log("priority");
 }
@@ -80,6 +77,7 @@ function completeTask(element) {
 }
 
 function removeTask(element) {
+    document.getElementById('')
     console.log("delete");
     list.remove(element);
 }
