@@ -85,8 +85,13 @@ function prioritizeTask(element) {
     element.classList.toggle(PRIORITIZED);
     element.classList.toggle(UNPRIORITIZED);
 
-    element.classList.toggle("fa fa-exclamation-circle priority")
-    list.prepend(elementParent);
+    if (element.classList.contains(PRIORITIZED)) {
+        list.prepend(elementParent);
+    } else if (element.classList.contains(UNPRIORITIZED)) {
+        list.append(elementParent);
+    } else {
+
+    }
 
     LIST[element.id].priority = LIST[element.id].priority ? false : true;
 }
