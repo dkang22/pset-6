@@ -77,17 +77,17 @@ list.addEventListener("click", function(event){
 
 function prioritizeTask(element) {
     element = event.target;
-    console.log("priority");
+    elementParent = element.parentNode.parentNode;
 
-    LIST[element.id].priority = true;
+    list.prepend(elementParent);
+
+    LIST[element.id].priority = LIST[element.id].priority ? false : true;
 }
 
 
 
 function completeTask(element) {
-    console.log("complete");
     element = event.target;
-    elementParent = element.parentNode.parentNode.parentNode.parentNode;
 
     element.classList.toggle(CHECK);
     element.classList.toggle(UNCHECK);
