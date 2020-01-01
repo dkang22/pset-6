@@ -1,10 +1,12 @@
 const list = document.getElementById("tasks-list");
 const input = document.getElementById("input");
 let LIST = [];
-const CHECK = "fa-check-circle"
-const UNCHECK = "fa-circle-thin"
-const EXCLAMATION = "fa-exclamation-circle"
-const TRASHBIN = "fa-trash-o"
+const PRIORITIZED = "fa-exclamation-triangle";
+const UNPRIORITIZED = "fa-exclamation-circle";
+const CHECK = "fa-check-circle";
+const UNCHECK = "fa-circle-thin";
+const EXCLAMATION = "fa-exclamation-circle";
+const TRASHBIN = "fa-trash-o";
 const STRIKETHROUGH = "line-through";
 let indexValue = 0;
 let elementParent;
@@ -17,6 +19,7 @@ function newTask(task, index, priority, complete, remove) {
     remove = false;
 
     if(remove){return;}
+    const IMPORTANT = priority ? PRIORITIZED : UNPRIORITIZED;
     const DONE = complete ? CHECK : UNCHECK;
     const LINE = complete ? STRIKETHROUGH : "";
 
@@ -35,7 +38,7 @@ function newTask(task, index, priority, complete, remove) {
 
         const item =
                           `<li class="item" id="${index}">
-                            <span><button class="fa fa-exclamation-circle priority" id="${index}" job="priority"></button></i>
+                            <span><button class="fa ${IMPORTANT}" id="${index}" job="priority"></button></i>
                             <span class="text ${LINE}">${task}</span>
                             <span"><button class="fa ${DONE}" id="${index}" job="complete"></button></i>
                             <span"><button class="fa fa-trash-o remove" id="${index}" job="remove"></button></i>
@@ -79,6 +82,10 @@ function prioritizeTask(element) {
     element = event.target;
     elementParent = element.parentNode.parentNode;
 
+    element.classList.toggle(PRIORITIZED);
+    element.classList.toggle(UNPRIORITIZED);
+
+    element.classList.toggle("fa fa-exclamation-circle priority")
     list.prepend(elementParent);
 
     LIST[element.id].priority = LIST[element.id].priority ? false : true;
