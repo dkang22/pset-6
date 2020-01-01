@@ -1,45 +1,49 @@
 const list = document.getElementById("tasks-list");
 const input = document.getElementById("input");
-let taskArray = [];
+let LIST = [];
 const CHECK = "fa-check-circle"
 const UNCHECK = "fa-circle-thin"
 const EXCLAMATION = "fa-exclamation-circle"
 const TRASHBIN = "fa-trash-o"
 const STRIKETHROUGH = "lineThrough";
-let id = 0;
+let indexValue = 0;
 
 function newTask(task, index, priority, complete, remove) {
     task = input.value;
-    index = id;
+    index = indexValue
     priority = false;
     complete = false;
     remove = false;
 
+    if(remove){return;}
+    const DONE = complete ? CHECK : UNCHECK;
+    const LINE = complete ? STRIKETHROUGH : "";
+
     if (input.value == "") {
         alert("Please enter a task to-do!");
     } else {
-        taskArray.push({
+        LIST.push({
             name: task,
             index: index,
             priority: false,
             complete: false,
             remove: false
         });
-        id++;
-        var item = document.createElement("li");
-        item.innerHTML =
+        indexValue++;
+
+        const item =
                           `<li class="item" id="${index}">
-                            <span><button class="fa fa-exclamation-circle priority" id="${index}" job="prioritize"></button></i>
-                            <span class="to-do-text" id="${index}">  ${task}  </span>
-                            <span"><button class="fa fa-check-circle" id="${index}" job="complete"></button></i>
+                            <span><button class="fa fa-exclamation-circle priority" id="${index}" job="priority"></button></i>
+                            <span class="text ${LINE}">  ${task}  </span>
+                            <span"><button class="fa ${DONE}" id="${index}" job="complete"></button></i>
                             <span"><button class="fa fa-trash-o remove" id="${index}" job="remove"></button></i>
                           </li>
                         `;
-        list.append(item);
+        list.insertAdjacentHTML("beforeend", item);
         input.value = "";
 
-        let c = taskArray.length -1;
-        console.log(taskArray[c]);
+        let c = LIST.length -1;
+        console.log(LIST[c]);
     }
 }
 
@@ -54,10 +58,10 @@ document.addEventListener("keyup", function(event){
 });
 
 list.addEventListener("click", function(event){
-    var element = event.target;
-    var elementJob = element.attributes.job.value;
+    const element = event.target;
+    const elementJob = element.attributes.job.value;
 
-    if (elementJob == "prioritize"){
+    if (elementJob == "priority"){
         prioritizeTask(element);
     } else if (elementJob == "complete"){
         completeTask(element);
@@ -68,27 +72,31 @@ list.addEventListener("click", function(event){
     }
 });
 
+
 function prioritizeTask(element) {
+    element = event.target;
     console.log("priority");
+
+    LIST[element.id].priority = true;
 }
 
 
-/*
+
 function completeTask(element) {
     console.log("complete");
-    element.parentNode.querySelector(".")
+    element = event.target;
+    element.classList.toggle(CHECK);
+    element.classList.toggle(UNCHECK);
+    element.parentNode.querySelector(".text").classList.toggle(STRIKETHROUGH);
+
+    LIST[element.id].complete = LIST[element.id].done ? false : true;
 }
-*/
+
 function removeTask(element) {
+    element = event.target;
+    const elementParent = element.parentNode.parentNode.parentNode.parentNode;
 
-    console.log("delete");
-    element.parentNode.parentNode.removeChild(element.parentNode);
+    elementParent.remove();
 
-    taskArray[element.id].trash = true;
+    LIST[element.id].remove = true;
 }
-
-/*
-    var x = this.querySelector("li").id;
-        list.remove(list(x));
-
-*/
