@@ -5,12 +5,13 @@ const CHECK = "fa-check-circle"
 const UNCHECK = "fa-circle-thin"
 const EXCLAMATION = "fa-exclamation-circle"
 const TRASHBIN = "fa-trash-o"
-const STRIKETHROUGH = "lineThrough";
+const STRIKETHROUGH = "line-through";
 let indexValue = 0;
+let elementParent;
 
 function newTask(task, index, priority, complete, remove) {
     task = input.value;
-    index = indexValue
+    index = indexValue;
     priority = false;
     complete = false;
     remove = false;
@@ -24,17 +25,18 @@ function newTask(task, index, priority, complete, remove) {
     } else {
         LIST.push({
             name: task,
-            index: index,
+            index: indexValue,
             priority: false,
             complete: false,
             remove: false
         });
+
         indexValue++;
 
         const item =
                           `<li class="item" id="${index}">
                             <span><button class="fa fa-exclamation-circle priority" id="${index}" job="priority"></button></i>
-                            <span class="text ${LINE}">  ${task}  </span>
+                            <span class="text ${LINE}">${task}</span>
                             <span"><button class="fa ${DONE}" id="${index}" job="complete"></button></i>
                             <span"><button class="fa fa-trash-o remove" id="${index}" job="remove"></button></i>
                           </li>
@@ -85,16 +87,18 @@ function prioritizeTask(element) {
 function completeTask(element) {
     console.log("complete");
     element = event.target;
+    elementParent = element.parentNode.parentNode.parentNode.parentNode;
+
     element.classList.toggle(CHECK);
     element.classList.toggle(UNCHECK);
-    element.parentNode.querySelector(".text").classList.toggle(STRIKETHROUGH);
+    element.parentNode.parentNode.querySelector(".text").classList.toggle(STRIKETHROUGH);
 
     LIST[element.id].complete = LIST[element.id].done ? false : true;
 }
 
 function removeTask(element) {
     element = event.target;
-    const elementParent = element.parentNode.parentNode.parentNode.parentNode;
+    elementParent = element.parentNode.parentNode.parentNode.parentNode;
 
     elementParent.remove();
 

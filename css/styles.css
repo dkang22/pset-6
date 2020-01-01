@@ -90,6 +90,10 @@ input {
 
 }
 
+.line-through {
+    text-decoration: line-through;
+}
+
 #priority-button {
 }
 
