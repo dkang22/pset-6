@@ -51,18 +51,20 @@ function renderList() {
         const LINE = complete ? STRIKETHROUGH : "";
 
         if (remove === true) {
-            //don't print
+            //do nothing
         } else {
-            const item =
-                            `<li class="item" id="${indexValue}">
+
+        const item =
+                          `
+                            <li class="item" id="${indexValue}">
                               <span><button class="fa ${IMPORTANT}" id="${indexValue}" job="priority"></button></span>
                               <span class="text ${LINE}">${task}</span>
                               <span"><button class="fa ${DONE}" id="${indexValue}" job="complete"></button></span>
                               <span"><button class="fa fa-trash-o remove" id="${indexValue}" job="remove"></button></span>
                             </li>
                           `;
-            list.insertAdjacentHTML("beforeend", item);
-        }
+        list.insertAdjacentHTML("beforeend", item);
+      }
     }
 }
 
@@ -124,7 +126,4 @@ function removeTask(element) {
 
     elementParent.remove();
     tasksArray[element.id].remove = true;
-
-    let indexElement = tasksArray.findIndex(element);
-    tasksArray.splice(indexElement, 0, "");
 }
