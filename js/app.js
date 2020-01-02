@@ -78,7 +78,7 @@ document.addEventListener("keyup", function(event){
 
 list.addEventListener("click", function(event){
     const element = event.target;
-    const elementJob = element.attributes.job.value;
+    const elementJob = (element.attributes.job ? element.attributes.job.value : null);
 
     if (elementJob == "priority"){
         prioritizeTask(element);
