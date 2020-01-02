@@ -17,11 +17,6 @@ function newTask(task, index, priority, complete, remove) {
     complete = false;
     remove = false;
 
-    if(remove){return;}
-    const IMPORTANT = priority ? PRIORITIZED : UNPRIORITIZED;
-    const DONE = complete ? CHECK : UNCHECK;
-    const LINE = complete ? STRIKETHROUGH : "";
-
     if (input.value == "") {
         //intentially blank
     } else {
@@ -33,17 +28,41 @@ function newTask(task, index, priority, complete, remove) {
             remove: false
         });
 
-        const item =
-                          `<li class="item" id="${indexValue}">
-                            <span><button class="fa ${IMPORTANT}" id="${indexValue}" job="priority"></button></i>
-                            <span class="text ${LINE}">${task}</span>
-                            <span"><button class="fa ${DONE}" id="${indexValue}" job="complete"></button></i>
-                            <span"><button class="fa fa-trash-o remove" id="${indexValue}" job="remove"></button></i>
-                          </li>
-                        `;
-        list.insertAdjacentHTML("beforeend", item);
+        renderList();
+
         input.value = "";
         indexValue++;
+    }
+}
+
+function renderList() {
+
+    let clear = document.getElementById("tasks-list");
+    clear.innerHTML = "";
+
+    for (let x = 0; x < tasksArray.length; x++) {
+        var task = tasksArray[x].name;
+        var indexValue = tasksArray[x].index;
+        var priority = tasksArray[x].priority;
+        var complete = tasksArray[x].complete;
+        var remove = tasksArray[x].remove;
+        const IMPORTANT = priority ? PRIORITIZED : UNPRIORITIZED;
+        const DONE = complete ? CHECK : UNCHECK;
+        const LINE = complete ? STRIKETHROUGH : "";
+
+        if (remove === true) {
+            //don't print
+        } else {
+            const item =
+                            `<li class="item" id="${indexValue}">
+                              <span><button class="fa ${IMPORTANT}" id="${indexValue}" job="priority"></button></span>
+                              <span class="text ${LINE}">${task}</span>
+                              <span"><button class="fa ${DONE}" id="${indexValue}" job="complete"></button></span>
+                              <span"><button class="fa fa-trash-o remove" id="${indexValue}" job="remove"></button></span>
+                            </li>
+                          `;
+            list.insertAdjacentHTML("beforeend", item);
+        }
     }
 }
 
@@ -101,8 +120,11 @@ function completeTask(element) {
 
 function removeTask(element) {
     element = event.target;
-    elementParent = element.parentNode.parentNode.parentNode.parentNode;
+    elementParent = element.parentNode.parentNode.parentNode;
 
     elementParent.remove();
     tasksArray[element.id].remove = true;
+
+    let indexElement = tasksArray.findIndex(element);
+    tasksArray.splice(indexElement, 0, "");
 }
