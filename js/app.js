@@ -125,7 +125,7 @@ function prioritizeTask(element) {
     }
 
     const index = tasksArray.indexOf(tasksArray.find(function(el) {
-      return el.index == element.id
+        return el.index == element.id;
     }));
 
     tasksArray[index].priority = (tasksArray[index].priority ? false : true);
@@ -140,8 +140,9 @@ function completeTask(element) {
     element.parentNode.parentNode.querySelector(".text").classList.toggle(STRIKETHROUGH);
 
     const index = tasksArray.indexOf(tasksArray.find(function(el) {
-      return el.index == element.id
+        return el.index == element.id;
     }));
+
     tasksArray[index].complete = (tasksArray[index].complete ? false : true);
     renderList();
 }
@@ -149,14 +150,11 @@ function completeTask(element) {
 function removeTask(element) {
     element = event.target;
     elementParent = element.parentNode.parentNode.parentNode;
-    //elementParent.remove();
 
     const index = tasksArray.indexOf(tasksArray.find(function(el) {
-      return el.index === element.id
+        return el.index === element.id;
     }));
+
     tasksArray.splice(index, 1);
     displayList();
-
-    //tasksArray[element.id].remove = true;
-    //renderList();
 }
