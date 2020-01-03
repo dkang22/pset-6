@@ -17,6 +17,8 @@ function newTask(task, index, priority, complete, remove) {
     complete = false;
     remove = false;
 
+    renderList();
+
     if (input.value == "") {
         //intentially blank
     } else {
