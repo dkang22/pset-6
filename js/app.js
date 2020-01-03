@@ -29,6 +29,7 @@ function newTask(task, index, priority, complete, remove) {
         });
 
         renderList();
+        displayList();
 
         input.value = "";
         indexValue++;
@@ -36,36 +37,49 @@ function newTask(task, index, priority, complete, remove) {
 }
 
 function renderList() {
+        for (let x = 0; x < tasksArray.length; x++) {
+          let priority = tasksArray[x].priority;
+          let remove = tasksArray[x].remove;
 
-    let clear = document.getElementById("tasks-list");
-    clear.innerHTML = "";
-
-    for (let x = 0; x < tasksArray.length; x++) {
-        var task = tasksArray[x].name;
-        var indexValue = tasksArray[x].index;
-        var priority = tasksArray[x].priority;
-        var complete = tasksArray[x].complete;
-        var remove = tasksArray[x].remove;
-        const IMPORTANT = priority ? PRIORITIZED : UNPRIORITIZED;
-        const DONE = complete ? CHECK : UNCHECK;
-        const LINE = complete ? STRIKETHROUGH : "";
-
-        if (remove === true) {
-            //do nothing
-        } else {
-
-        const item =
-                          `
-                            <li class="item" id="${indexValue}">
-                              <span><button class="fa ${IMPORTANT}" id="${indexValue}" job="priority"></button></span>
-                              <span class="text ${LINE}">${task}</span>
-                              <span"><button class="fa ${DONE}" id="${indexValue}" job="complete"></button></span>
-                              <span"><button class="fa fa-trash-o remove" id="${indexValue}" job="remove"></button></span>
-                            </li>
-                          `;
-        list.insertAdjacentHTML("beforeend", item);
+          if (remove === true) {
+              tasksArray.splice(x, 1);
+              x = -1;
+          } else if (priority === true) {
+              let movingElement = tasksArray[x];
+              tasksArray.splice(x, 1);
+              tasksArray.unshift(movingElement);
+          } else {
+              //do nothing
+          }
       }
-    }
+}
+
+function displayList() {
+      let clear = document.getElementById("tasks-list");
+      clear.innerHTML = "";
+
+      for (let x = 0; x < tasksArray.length; x++) {
+          let task = tasksArray[x].name;
+          let indexValue = tasksArray[x].index;
+          let priority = tasksArray[x].priority;
+          let complete = tasksArray[x].complete;
+          let remove = tasksArray[x].remove;
+
+          const IMPORTANT = priority ? PRIORITIZED : UNPRIORITIZED;
+          const DONE = complete ? CHECK : UNCHECK;
+          const LINE = complete ? STRIKETHROUGH : "";
+
+          const item =
+                            `
+                              <li class="item" id="${indexValue}">
+                                <span><button class="fa ${IMPORTANT}" id="${indexValue}" job="priority"></button></span>
+                                <span class="text ${LINE}">${task}</span>
+                                <span"><button class="fa ${DONE}" id="${indexValue}" job="complete"></button></span>
+                                <span"><button class="fa fa-trash-o remove" id="${indexValue}" job="remove"></button></span>
+                              </li>
+                            `;
+          list.insertAdjacentHTML("beforeend", item);
+      }
 }
 
 document.addEventListener("keyup", function(event){
@@ -108,7 +122,7 @@ function prioritizeTask(element) {
         //intentially blank
     }
 
-    tasksArray[element.id].priority = tasksArray[element.id].priority ? false : true;
+    tasksArray[element.id].priority = (tasksArray[element.id].priority ? false : true);
 }
 
 function completeTask(element) {
@@ -117,7 +131,7 @@ function completeTask(element) {
     element.classList.toggle(CHECK);
     element.classList.toggle(UNCHECK);
     element.parentNode.parentNode.querySelector(".text").classList.toggle(STRIKETHROUGH);
-    tasksArray[element.id].complete = tasksArray[element.id].done ? false : true;
+    tasksArray[element.id].complete = (tasksArray[element.id].complete ? false : true);
 }
 
 function removeTask(element) {
