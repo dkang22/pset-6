@@ -45,7 +45,7 @@ function renderList() {
 
           if (remove === true) {
               tasksArray.splice(x, 1);
-              x = -1;
+              x--;
           } else if (priority === true) {
               let movingElement = tasksArray[x];
               tasksArray.splice(x, 1);
@@ -124,7 +124,12 @@ function prioritizeTask(element) {
         //intentially blank
     }
 
-    tasksArray[element.id].priority = (tasksArray[element.id].priority ? false : true);
+    const index = tasksArray.indexOf(tasksArray.find(function(el) {
+      return el.index == element.id
+    }));
+
+    tasksArray[index].priority = (tasksArray[index].priority ? false : true);
+    renderList();
 }
 
 function completeTask(element) {
@@ -133,13 +138,25 @@ function completeTask(element) {
     element.classList.toggle(CHECK);
     element.classList.toggle(UNCHECK);
     element.parentNode.parentNode.querySelector(".text").classList.toggle(STRIKETHROUGH);
-    tasksArray[element.id].complete = (tasksArray[element.id].complete ? false : true);
+
+    const index = tasksArray.indexOf(tasksArray.find(function(el) {
+      return el.index == element.id
+    }));
+    tasksArray[index].complete = (tasksArray[index].complete ? false : true);
+    renderList();
 }
 
 function removeTask(element) {
     element = event.target;
     elementParent = element.parentNode.parentNode.parentNode;
+    //elementParent.remove();
 
-    elementParent.remove();
-    tasksArray[element.id].remove = true;
+    const index = tasksArray.indexOf(tasksArray.find(function(el) {
+      return el.index === element.id
+    }));
+    tasksArray.splice(index, 1);
+    displayList();
+
+    //tasksArray[element.id].remove = true;
+    //renderList();
 }
