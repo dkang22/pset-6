@@ -17,8 +17,6 @@ function newTask(task, index, priority, complete, remove) {
     complete = false;
     remove = false;
 
-    renderList();
-
     if (input.value == "") {
         //intentially blank
     } else {
@@ -30,30 +28,11 @@ function newTask(task, index, priority, complete, remove) {
             remove: false
         });
 
-        renderList();
         displayList();
 
         input.value = "";
         indexValue++;
     }
-}
-
-function renderList() {
-        for (let x = 0; x < tasksArray.length; x++) {
-          let priority = tasksArray[x].priority;
-          let remove = tasksArray[x].remove;
-
-          if (remove === true) {
-              tasksArray.splice(x, 1);
-              x--;
-          } else if (priority === true) {
-              let movingElement = tasksArray[x];
-              tasksArray.splice(x, 1);
-              tasksArray.unshift(movingElement);
-          } else {
-              //do nothing
-          }
-      }
 }
 
 function displayList() {
@@ -129,7 +108,20 @@ function prioritizeTask(element) {
     }));
 
     tasksArray[index].priority = (tasksArray[index].priority ? false : true);
-    renderList();
+
+    if (tasksArray[index].priority === true) {
+        let movingElement = tasksArray[index];
+        tasksArray.splice(index, 1);
+        tasksArray.unshift(movingElement);
+    } else if (tasksArray[index].priority === false) {
+        let movingElement = tasksArray[index];
+        tasksArray.splice(index, 1);
+        tasksArray.push(movingElement);
+    } else {
+        //empty
+    }
+
+    displayList();
 }
 
 function completeTask(element) {
@@ -144,7 +136,6 @@ function completeTask(element) {
     }));
 
     tasksArray[index].complete = (tasksArray[index].complete ? false : true);
-    renderList();
 }
 
 function removeTask(element) {
@@ -152,7 +143,8 @@ function removeTask(element) {
     elementParent = element.parentNode.parentNode.parentNode;
 
     const index = tasksArray.indexOf(tasksArray.find(function(el) {
-        return el.index === element.id;
+        return el.index == element.id;
+        console.log(element.id);
     }));
 
     tasksArray.splice(index, 1);
